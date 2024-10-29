@@ -35,15 +35,28 @@ public class LoginServlet extends HttpServlet {
         UserDao userDao = new UserDao(FactoryProvider.getfactory());
         User user = userDao.getUserByEmailAndPassword(email, password);
 
-        if (user == null) {
-            httpSession.setAttribute("message", "Invalid details. Try another email.");
-            response.sendRedirect("Login.jsp");
-            return;
-        } else {
+        // Debugging output for user type
+        if (user != null) {
+            System.out.println("User Type: " + user.getUserType()); // Debug output
+
             // Successful login
             httpSession.setAttribute("user", user);
             httpSession.setAttribute("welcomeMessage", "Welcome " + user.getUserName() + "!");
-            response.sendRedirect("index.jsp"); // Redirect to index.jsp
+
+            // Check user type and redirect accordingly
+            if (user.getUserType().equalsIgnoreCase("Admin")) {
+                response.sendRedirect("Admin.jsp");
+            } else if (user.getUserType().equalsIgnoreCase("Normal")) {
+                response.sendRedirect("Normal.jsp");
+            } else {
+                // Handle unexpected user types
+                httpSession.setAttribute("message", "Unrecognized user type.");
+                response.sendRedirect("Login.jsp");
+            }
+        } else {
+            // Handle invalid login
+            httpSession.setAttribute("message", "Invalid details. Try another email.");
+            response.sendRedirect("Login.jsp");
         }
     }
 

@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
 
         // Attempt to register the user
         try {
-            User user = new User(userName, userEmail, userPassword, userPhone, "default.jpg", userAddress, "normal");
+            User user = new User(userName, userEmail, userPassword, userPhone, "default.jpg", userAddress, "Normal");
             Session hibernateSession = FactoryProvider.getfactory().openSession();
             Transaction tx = hibernateSession.beginTransaction();
 

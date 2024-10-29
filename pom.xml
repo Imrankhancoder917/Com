@@ -19,20 +19,19 @@
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>3.0.0</version> <!-- Ensure using a valid version -->
+            <version>3.0.0</version> 
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.4.Final</version> <!-- or later -->
+            <version>5.4.4.Final</version> 
         </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId> <!-- Updated artifact ID -->
-            <version>8.0.33</version> <!-- Latest stable version -->
+            <artifactId>mysql-connector-j</artifactId> 
+            <version>8.0.33</version> 
         </dependency>
-        <!-- Add any additional dependencies here -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
