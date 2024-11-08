@@ -1,3 +1,6 @@
+<%@page import="com.shoping.mavenproject7.entities.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="com.shoping.mavenproject7.Dao.ProductDao"%>
 <%@page import="com.shoping.mavenproject7.helper.FactoryProvider"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,14 +47,41 @@
                         %>
 
                         <div class="row">
-                            <div class="col text-right"> <!-- Align content to the right -->
-                                <%
-                                    // Print FactoryProvider output
-                                    out.println(FactoryProvider.getfactory()+"<br>");
-                                    out.println(FactoryProvider.getfactory()+"<br>");
-                                    out.println(FactoryProvider.getfactory());
-                                %>
+                            <%
+                          ProductDao dao=new ProductDao(FactoryProvider.getfactory());
+                          List<Product>list=dao.getAllProducts();
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            %>
+                            
+                            
+                            
+                            
+                            
+                            
+                            <%-- show category--%>
+                            <div class="col-md-2">
+                                
+                                
+                                
+                            
                             </div>
+                            <%-- show product--%>
+                            <div class="col-md-8">
+                                <<h1>number of product <%=list.size()%></h1>
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>

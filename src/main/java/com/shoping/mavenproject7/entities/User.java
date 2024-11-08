@@ -1,4 +1,3 @@
-
 package com.shoping.mavenproject7.entities;
 
 import javax.persistence.Column;
@@ -11,24 +10,32 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 50,name="user_id")
+    @Column(length = 50, name = "user_id")
     private int userId;
-    @Column(length = 100,name="user_name")
+    
+    @Column(length = 100, name = "user_name")
     private String userName;
-    @Column(length = 100,name="user_email")
+    
+    @Column(length = 100, name = "user_email")
     private String userEmail;
-    @Column(length = 20,name="user_password")
+    
+    @Column(length = 20, name = "user_password")
     private String userPassword;
-    @Column(length = 12,name="user_phone")
+    
+    @Column(length = 12, name = "user_phone")
     private String userPhone;
-    @Column(length = 1500,name="user_pic")
+    
+    @Column(length = 1500, name = "user_pic")
     private String userPic;
-    @Column(length = 1500,name="user_address")
+    
+    @Column(length = 1500, name = "user_address")
     private String userAddress;
-    @Column(name="user_type")
+    
+    @Column(name = "user_type")
     private String userType;
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress,String userType) {
+    // Constructors
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -39,7 +46,7 @@ public class User {
         this.userType = userType;
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress,String userType) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -52,6 +59,7 @@ public class User {
     public User() {
     }
 
+    // Getters and Setters
     public int getUserId() {
         return userId;
     }
@@ -115,13 +123,22 @@ public class User {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-    
+
+    // New getName method
+    public String getName() {
+        return userName;
+    }
 
     @Override
     public String toString() {
-        return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + '}';
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userPic='" + userPic + '\'' +
+                ", userAddress='" + userAddress + '\'' +
+                '}';
     }
-    
-    
-    
 }

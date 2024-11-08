@@ -1,8 +1,12 @@
 com\shoping\mavenproject7\helper\FactoryProvider.class
 com\shoping\mavenproject7\entities\User.class
-com\shoping\mavenproject7\entities\Product.class
+com\shoping\mavenproject7\Dao\CategoryDao.class
 com\shoping\mavenproject7\servlets\LogoutServlet.class
+com\shoping\mavenproject7\servlets\ProductOperationServlet.class
+com\shoping\mavenproject7\entities\Product.class
+com\shoping\mavenproject7\servlets\productServlet.class
 com\shoping\mavenproject7\servlets\RegisterServlet.class
 com\shoping\mavenproject7\servlets\LoginServlet.class
 com\shoping\mavenproject7\Dao\UserDao.class
 com\shoping\mavenproject7\entities\Category.class
+com\shoping\mavenproject7\Dao\ProductDao.class
