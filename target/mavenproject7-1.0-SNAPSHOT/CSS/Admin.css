@@ -1,0 +1,10 @@
+.admin.card {
+    border: 1px solid red;
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+}
+
+.admin.card:hover {
+    background: #2e2e2; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly scale up the card */
+    cursor: pointer; /* Change cursor to pointer */
+}
