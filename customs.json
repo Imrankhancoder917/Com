@@ -1,5 +1,7 @@
 {
     "elements": {
+        "div": {},
+        "h1": {},
         "style": {}
     },
     "attributes": {}
