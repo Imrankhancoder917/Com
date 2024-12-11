@@ -626,8 +626,8 @@
 
     <div class="overlay">
         <div class="menu-content">
-          <div><h1 id="text1"><a href="">lOGIN</a></h1></div>
-           <div><h1 id="text2"><a href="">SIGN UP</a></h1></div>
+          <div><h1 id="text1"><a href="Login.jsp">lOGIN</a></h1></div>
+           <div><h1 id="text2"><a href="Register.jsp">SIGN UP</a></h1></div>
            <div><h1 id="text3"><a href="">MYCART</a></h1></div>
            <div><h1 id="text4"><a href="">SHOP</a></h1></div>
            <div><h1 id="text5"><a href="">About Us</a></h1></div>
