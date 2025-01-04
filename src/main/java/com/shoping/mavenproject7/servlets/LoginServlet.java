@@ -4,6 +4,7 @@ import com.shoping.mavenproject7.Dao.UserDao;
 import com.shoping.mavenproject7.entities.User;
 import com.shoping.mavenproject7.helper.FactoryProvider;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +23,15 @@ public class LoginServlet extends HttpServlet {
 
         // Basic validation
         if (email == null || email.isEmpty()) {
-            httpSession.setAttribute("message", "Email cannot be empty.");
-            response.sendRedirect("Login.jsp");
+            request.setAttribute("message", "Email cannot be empty.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+            dispatcher.forward(request, response);
             return;
         }
         if (password == null || password.isEmpty()) {
-            httpSession.setAttribute("message", "Password cannot be empty.");
-            response.sendRedirect("Login.jsp");
+            request.setAttribute("message", "Password cannot be empty.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+            dispatcher.forward(request, response);
             return;
         }
 
@@ -50,13 +53,15 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("Normal.jsp");
             } else {
                 // Handle unexpected user types
-                httpSession.setAttribute("message", "Unrecognized user type.");
-                response.sendRedirect("Login.jsp");
+                request.setAttribute("message", "Unrecognized user type.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+                dispatcher.forward(request, response);
             }
         } else {
             // Handle invalid login
-            httpSession.setAttribute("message", "Invalid details. Try another email.");
-            response.sendRedirect("Login.jsp");
+            request.setAttribute("message", "Invalid details. Try another email.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

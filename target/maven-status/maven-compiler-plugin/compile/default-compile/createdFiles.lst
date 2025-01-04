@@ -10,3 +10,4 @@ com\shoping\mavenproject7\servlets\LoginServlet.class
 com\shoping\mavenproject7\Dao\UserDao.class
 com\shoping\mavenproject7\entities\Category.class
 com\shoping\mavenproject7\Dao\ProductDao.class
+com\shoping\mavenproject7\helper\Helper.class

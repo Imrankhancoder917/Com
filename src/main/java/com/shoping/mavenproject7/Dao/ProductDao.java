@@ -44,7 +44,20 @@ public class ProductDao {
         List<Product> products = new ArrayList<>();
         try (Session session = this.factory.openSession()) { // Use try-with-resources for session management
             Query<Product> query = session.createQuery("from Product", Product.class);
-            products = query.getResultList();
+            products = query.getResultList(); // Fetch the results
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+        }
+        return products; // Return the list of products
+    }
+
+    // Method to get products by category ID
+    public List<Product> getAllProductByID(int cid) {
+        List<Product> products = new ArrayList<>();
+        try (Session session = this.factory.openSession()) { // Use try-with-resources for session management
+            Query<Product> query = session.createQuery("from Product as product where product.category.categoryId =: id", Product.class);
+            query.setParameter("id", cid);
+            products = query.getResultList(); // Fetch the results
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception
         }
@@ -55,12 +68,26 @@ public class ProductDao {
     public long getProductCount() {
         long count = 0; // Initialize count
         try (Session session = this.factory.openSession()) { // Use try-with-resources for session management
-            String hql = "SELECT COUNT(p) FROM Product p"; // HQL query to count products
+            String hql = "SELECT COUNT(product) FROM Product product"; // HQL query to count products
             Query<Long> query = session.createQuery(hql, Long.class); // Create query
             count = query.uniqueResult(); // Get the count result
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception
         }
         return count; // Return the total count of products
+    }
+
+    // Method to search products by name or description
+    public List<Product> searchProductsByNameOrDesc(String searchQuery) {
+        List<Product> products = new ArrayList<>();
+        try (Session session = this.factory.openSession()) { // Use try-with-resources for session management
+            // Create HQL query to search products by name or description
+            Query<Product> query = session.createQuery("FROM Product WHERE pName LIKE :searchTerm OR pDisc LIKE :searchTerm", Product.class);
+            query.setParameter("searchTerm", "%" + searchQuery + "%");
+            products = query.getResultList(); // Fetch the results
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+        }
+        return products; // Return the list of products
     }
 }

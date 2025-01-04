@@ -1,4 +1,3 @@
-
 package com.shoping.mavenproject7.entities;
 
 import java.util.ArrayList;
@@ -10,42 +9,34 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int categoryId;
     private String categoryTitle;
     private String categoryDescription;
+
     @OneToMany(mappedBy = "category")
-    
-    
-    //mapping 
     private List<Product> product = new ArrayList<>();
 
+    // Constructors
     public Category(int categoryId, String categoryTitle, String categoryDescription) {
         this.categoryId = categoryId;
         this.categoryTitle = categoryTitle;
         this.categoryDescription = categoryDescription;
     }
 
-    public Category(String categoryTitle, String categoryDescription,List<Product> product) {
+    public Category(String categoryTitle, String categoryDescription, List<Product> product) {
         this.categoryTitle = categoryTitle;
         this.categoryDescription = categoryDescription;
-        this.product=product;
+        this.product = product;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
     public Category() {
     }
 
+    // Getters and Setters
     public int getCategoryId() {
         return categoryId;
     }
@@ -77,13 +68,21 @@ public class Category {
     public void setProduct(List<Product> product) {
         this.product = product;
     }
-    
 
+    // Additional Methods
+    // Method to get the category (returns the current Category object)
+    public Category getCategory() {
+        return this;
+    }
+
+    // Method to get the category name (returns the categoryTitle)
+    public String getCategoryName() {
+        return this.categoryTitle;
+    }
+
+    // Override toString for debugging purposes
     @Override
     public String toString() {
         return "Category{" + "categoryId=" + categoryId + ", categoryTitle=" + categoryTitle + ", categoryDescription=" + categoryDescription + '}';
     }
-    
-    
-    
 }

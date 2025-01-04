@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @MultipartConfig
@@ -26,7 +28,7 @@ public class productServlet extends HttpServlet {
         SessionFactory factory = FactoryProvider.getfactory();
         Session session = factory.openSession();
 
-        String message = null;  // To hold success or error messages
+        String message = null;
 
         try {
             String open = request.getParameter("Open");
@@ -46,10 +48,9 @@ public class productServlet extends HttpServlet {
                         int pDisc = Integer.parseInt(discountParam);
                         int pQuantity = Integer.parseInt(quantityParam);
                         int catId = Integer.parseInt(catIdParam);
-                        
-                        Part part = request.getPart("productImage");
-                        // Save the image and get its path (update this method to handle image saving)
-                        String imagePath = saveImage(part);
+
+                        Part part = request.getPart("productImage"); // Get image part
+                        String imagePath = saveImage(part); // Save the image and get its path
 
                         Product p = new Product();
                         p.setpName(pName);
@@ -57,7 +58,7 @@ public class productServlet extends HttpServlet {
                         p.setpPrice(pPrice);
                         p.setpDiscount(pDisc);
                         p.setpQuantity(pQuantity);
-                        p.setpPhoto(imagePath); // Save the image path or filename
+                        p.setpPhoto(imagePath); // Save the image path in the product
 
                         // Get category by ID
                         CategoryDao cDao = new CategoryDao(factory);
@@ -68,7 +69,7 @@ public class productServlet extends HttpServlet {
                         ProductDao pDao = new ProductDao(factory);
                         session.beginTransaction();
                         pDao.saveProduct(p);
-                        
+
                         session.getTransaction().commit();
                         message = "Product saved successfully with name: " + pName; // Set success message
                     } catch (Exception e) {
@@ -99,13 +100,24 @@ public class productServlet extends HttpServlet {
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
     }
 
+    // Helper method to save image
     private String saveImage(Part part) throws IOException {
-        String fileName = part.getSubmittedFileName();
-        // Update this path to your desired directory where images will be saved
-        String imagePath = "C:/apache-tomcat-8.5.99/webapps/yourapp/images/" + fileName; 
+        String fileName = part.getSubmittedFileName(); // Get the original file name
+        String imagePath = getServletContext().getRealPath("Image" + File.separator + "product") 
+                + File.separator + fileName; // Build the absolute path to save the image
+
+        // Ensure the directory exists, create it if not
+        File directory = new File(getServletContext().getRealPath("Image" + File.separator + "product"));
+        if (!directory.exists()) {
+            directory.mkdirs(); // Create the directory if it doesn't exist
+        }
+
+        // Save the uploaded file
         File file = new File(imagePath);
-        part.write(file.getAbsolutePath()); // Save the uploaded file
-        return imagePath; // Return the path where the image is saved
+        part.write(file.getAbsolutePath()); // Write the file to the disk
+
+        // Return the relative path to store in the database
+        return "Image/product/" + fileName; // Return only the relative path for the image
     }
 
     @Override

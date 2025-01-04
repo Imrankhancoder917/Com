@@ -72,5 +72,6 @@
 
 <!-- Include the Register.js file -->
 <script src="JS/Register.js"></script>
+ 
 </body>
 </html>

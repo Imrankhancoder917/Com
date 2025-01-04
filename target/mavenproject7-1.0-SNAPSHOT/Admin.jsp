@@ -413,7 +413,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="productImage" class="form-label">Product Image</label>
-                                <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
+                                <input type="file" class="form-control" id="productImage" name="Image" accept="Image/*" required>
                             </div>
                             <div class="mb-3">
                                 <label for="productCategory" class="form-label">Category</label>
@@ -552,6 +552,7 @@
 
 
         </script>
+        
 
 
 
